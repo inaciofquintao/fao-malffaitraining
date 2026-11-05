@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TCP/TIM/4002 · AI &amp; Dairy Buffalo Training Tracker</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E%F0%9F%90%83%3C/text%3E%3C/svg%3E">
+<style>
+:root{--bg:#f4f6fa;--card:#fff;--ink:#1a1f2e;--mut:#6b7591;--line:#dde2ee;--g:#1a7a5e;--gl:#e8f5f0;--r:#c0392b;--rl:#fdecea;--a:#b86a00;--al:#fff4e5;--hd:#1a1f2e;--in:#fffbe6;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12151d;--card:#1b2030;--ink:#e6e9f2;--mut:#98a2bd;--line:#2d3550;--g:#4cc9a0;--gl:#16322b;--r:#ff7b6b;--rl:#3a1f1d;--a:#f0a64a;--al:#3a2c16;--hd:#0c0e14;--in:#2b2a14;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#12151d;--card:#1b2030;--ink:#e6e9f2;--mut:#98a2bd;--line:#2d3550;--g:#4cc9a0;--gl:#16322b;--r:#ff7b6b;--rl:#3a1f1d;--a:#f0a64a;--al:#3a2c16;--hd:#0c0e14;--in:#2b2a14;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 Arial,Helvetica,sans-serif}
+header{background:var(--hd);color:#fff;padding:16px 18px}
+header h1{margin:0;font-size:18px}header p{margin:4px 0 0;font-size:12px;color:#9aaac8}
+nav{display:flex;gap:4px;overflow-x:auto;background:var(--hd);padding:0 12px}
+nav button{background:none;border:0;color:#9aaac8;padding:10px 14px;font:inherit;font-weight:700;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap}
+nav button.on{color:#fff;border-color:#2db88a}
+main{padding:16px;max-width:1200px;margin:0 auto}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.tile{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--g);border-radius:6px;padding:12px}
+.tile:nth-child(2){border-left-color:#4a90d9}.tile:nth-child(3){border-left-color:#f0a500}.tile:nth-child(4){border-left-color:var(--r)}
+.tile small{color:var(--mut);font-size:11px;text-transform:uppercase}.tile b{display:block;font-size:28px}.tile i{color:var(--mut);font-size:11px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:14px;margin-top:14px}
+.card h2{margin:0 0 8px;font-size:14px}
+.warn{background:var(--al);color:var(--a);border:1px solid var(--line);border-radius:6px;padding:10px;margin-top:14px;font-size:13px}
+.bar{height:10px;background:var(--line);border-radius:5px;overflow:hidden}.bar span{display:block;height:100%;background:var(--g)}
+.wrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--card);margin-top:12px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{background:var(--hd);color:#fff;font-size:11px;padding:7px 6px;text-align:center;white-space:nowrap}
+td{border-top:1px solid var(--line);padding:5px 8px;white-space:nowrap}
+tr:nth-child(even) td{background:color-mix(in srgb,var(--bg) 55%,var(--card))}
+td.c{text-align:center}
+.sticky{position:sticky;left:0;background:var(--card);z-index:1}
+th.sticky{background:var(--hd);z-index:2}
+input,select{font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:4px;padding:4px 6px}
+input.in{background:var(--in);color:#0000ff;font-weight:700}
+:root[data-theme="dark"] input.in{color:#8ab4ff}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) input.in{color:#8ab4ff}}
+.cell{width:30px;height:26px;border:1px solid var(--line);border-radius:4px;background:var(--card);color:var(--ink);font-weight:700;cursor:pointer}
+.cell.P{background:var(--gl);color:var(--g)}.cell.A{background:var(--rl);color:var(--r)}.cell.E{background:var(--al);color:var(--a)}
+.pass{color:var(--g);font-weight:700}.fail{color:var(--r);font-weight:700}
+.tag{font-size:11px;padding:2px 6px;border-radius:10px;background:var(--gl);color:var(--g)}
+.btn{background:var(--g);color:#fff;border:0;border-radius:4px;padding:7px 12px;font:inherit;font-weight:700;cursor:pointer}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.mut{color:var(--mut);font-size:12px}
+</style>
+</head>
+<body>
+<header><h1>AI &amp; Climate-Adaptive Dairy Buffalo Training</h1>
+<p>Participation Tracker · TCP/TIM/4002 · BIB Lembang × FAO Timor-Leste × MALFF · 20 livestock technicians · 35 working days</p></header>
+<nav id="nav"></nav>
+<main id="main"></main>
+<script>
+var TABS=["Dashboard","Participants","Schedule","Attendance","Assessment"];
+var NAMES=[["Luis da Rocha Rosina","Dili"],["Feliciano Fernandes","Dili"],["Jorge Dos Santos","Manufahi"],["Veronica de Jesus Dos Santos","Manufahi"],["Joana Agusta Gusmão de Sousa","Manatuto"],["Julio da Costa Belo Ximenes","Manatuto"],["Armindo Fernandes","Lautem"],["Agostinho Cabral","Lautem"],["Vasco G. Guterres","Lautem"],["Sidonio Pereira de Sa","Bobonaro"],["Salvador Fernandes","Dili"],["Amaro Ximenes Soares","Viqueque"],["Dulce Nascimento Victor","Lautem"],["Ana Paula Fernandes","Viqueque"],["Constantino Dos Santos Barreto","Viqueque"],["Aniceto Gusmao","Viqueque"],["Elifonso Magno","Dili"],["Jacinto Antonio da Costa","Manufahi"],["Francisco Viana","Viqueque"],["Domingos da C. Pinto","Viqueque"]];
+/* [title, type] type: P prep, C classroom, F field practice, D departure (ToR §VIII) */
+var DAYS=[["Arrival, coordination and technical preparation","P"],["Opening ceremony · breeding terminology","C"],["Introduction to AI · buffalo anatomy","C"],["Male reproduction · semen processing","C"],["Oestrous cycle and oestrus detection","C"],["Normal reproductive cycle","C"],["AI procedures · reproductive history · SOPs","C"],["AI preparation · thawing · semen deposition","C"],["AI equipment · liquid nitrogen · cold chain","C"],["Pregnancy diagnosis · conception rates","C"],["Drying-off · reproductive disorders · abortion","C"],["Biosecurity in AI services · AI as a business","C"],["Ear tagging · record-keeping · communication","C"],["Classroom summary · FINAL WRITTEN EXAM (AI)","C"],["Female reproductive organs (specimens)","F"],["Palpation (phantom box) · AI equipment insertion","F"],["Palpation in live animals (1/2)","F"],["Palpation in live animals (2/2)","F"],["AI equipment practice in live animals (1/2)","F"],["AI equipment practice in live animals (2/2)","F"],["Frozen semen · thawing · deposition site (1/2)","F"],["Frozen semen · thawing · deposition site (2/2)","F"],["Pregnancy diagnosis ≥90 days (1/5)","F"],["Pregnancy diagnosis ≥90 days (2/5)","F"],["Pregnancy diagnosis ≥90 days (3/5)","F"],["Pregnancy diagnosis ≥90 days (4/5)","F"],["Pregnancy diagnosis ≥90 days (5/5)","F"],["LN2 containers · AI equipment maintenance","F"],["Record-keeping · FINAL PRACTICAL + WRITTEN EXAM (AI)","F"],["Pre-test · climate change · housing and welfare","C"],["Nutrition · feeding management · forage","C"],["Heat stress · water · reproduction and nutrition","C"],["Clean milk production · milk hygiene","C"],["Mastitis · biosecurity · farm economics · CLOSING","C"],["Departure of instructors","D"]];
+var TYPE={P:"Preparation",C:"Classroom",F:"Field practice",D:"Departure"};
+var COMP=function(n){return n==1?"A · Arrival":n<=29?"B · AI & Reproductive Mgmt":n<=34?"C · Climate-Smart Dairy Buffalo":"D · Departure"};
+var KEY="tcp4002-tracker-v1";
+var S={start:"2026-11-09",people:NAMES.map(function(x){return{n:x[0],m:x[1]}}),att:{},sc:{},pass:""};
+try{var raw=localStorage.getItem(KEY);if(raw){S=Object.assign(S,JSON.parse(raw))}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+var tab=0;
+function dates(){var d=new Date(S.start+"T00:00:00"),out=[];if(isNaN(d))d=new Date("2026-11-09T00:00:00");
+  for(var i=0;i<35;i++){while(d.getDay()===0)d.setDate(d.getDate()+1);out.push(new Date(d));d.setDate(d.getDate()+1)}return out}
+function fd(d,long){return d.toLocaleDateString("en-GB",long?{weekday:"short",day:"2-digit",month:"2-digit",year:"numeric"}:{day:"2-digit",month:"2-digit"})}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/"/g,"&quot;")}
+function stats(){var N=S.people.length,rec={},per=S.people.map(function(){return{p:0,r:0}});
+  S.people.forEach(function(_,i){for(var d=2;d<=34;d++){var v=S.att[i+":"+d];if(v){per[i].r++;rec[d]=1;if(v==="P")per[i].p++}}});
+  var rates=per.filter(function(x){return x.r}).map(function(x){return x.p/x.r});
+  return{N:N,per:per,days:Object.keys(rec).length,avg:rates.length?rates.reduce(function(a,b){return a+b},0)/rates.length:0,trained:per.filter(function(x){return x.p>0}).length}}
+function render(){
+  document.getElementById("nav").innerHTML=TABS.map(function(t,i){return '<button class="'+(i===tab?"on":"")+'" data-t="'+i+'">'+t+'</button>'}).join("");
+  var m=document.getElementById("main");m.innerHTML=[dash,ppl,sch,attn,asx][tab]()}
+function dash(){var s=stats(),D=dates(),end=D[34],ret=new Date("2026-12-13T00:00:00");
+  var warn=end>ret?'<div class="warn"><b>Check the dates:</b> with Sundays off, Day 35 falls on '+fd(end,1)+'. The ToR (§XIII) gives the instructors’ return as 13/12/2026, which only fits 30 Mon–Sat working days from 9 Nov. Confirm with FAO / BIB Lembang.</div>':"";
+  return '<div class="tiles"><div class="tile"><small>Participants</small><b>'+s.N+'</b><i>registered · target 20 (ToR)</i></div>'+
+  '<div class="tile"><small>Days recorded</small><b>'+s.days+'</b><i>of 33 planned training days</i></div>'+
+  '<div class="tile"><small>Avg attendance</small><b>'+Math.round(s.avg*100)+'%</b><i>across recorded days</i></div>'+
+  '<div class="tile"><small>Unique trained</small><b>'+s.trained+'</b><i>present ≥1 day · target 20</i></div></div>'+
+  '<div class="card"><h2>Progress to target</h2><div class="bar"><span style="width:'+Math.min(100,s.trained/20*100)+'%"></span></div></div>'+warn+
+  '<div class="card"><h2>Programme snapshot (from the ToR)</h2><p class="mut" style="margin:0;line-height:1.7">Training on Artificial Insemination, Reproductive Management and Climate-Adaptive Dairy Buffalo Husbandry and Management for Timor-Leste Livestock Technicians.<br>Implementing agency: Lembang AI Centre (BIB Lembang), Indonesia · Funding: FAO Timor-Leste · Beneficiary: MALFF.<br>20 participants · 2 instructors · language of instruction: Indonesian.<br>35 working days (Mon–Sat): 1 arrival + 13 classroom + 15 field practice (AI) + 5 climate-smart dairy buffalo + 1 departure.</p></div>'}
+function ppl(){return '<div class="row"><button class="btn" id="add">+ Add participant</button><span class="mut">ToR §V: 20 officially nominated livestock technicians</span></div><div class="wrap"><table><tr><th>#</th><th>Full name</th><th>Municipality</th><th></th></tr>'+
+  S.people.map(function(p,i){return '<tr><td class="c">'+(i+1)+'</td><td><input data-f="n" data-i="'+i+'" value="'+esc(p.n)+'" size="34"></td><td><input data-f="m" data-i="'+i+'" value="'+esc(p.m)+'" size="14"></td><td><button class="cell" data-del="'+i+'" title="Remove">×</button></td></tr>'}).join("")+'</table></div>'}
+function sch(){var D=dates();return '<div class="row"><label><b>Day 1 date</b> (instructor arrival; ToR §XIII: 9 Nov 2026) <input type="date" class="in" id="start" value="'+S.start+'"></label><span class="mut">Dates skip Sundays (weekly rest day).</span></div><div class="wrap"><table><tr><th>Day</th><th>Date</th><th>Session</th><th>Component</th><th>Type</th></tr>'+
+  DAYS.map(function(d,i){return '<tr><td class="c"><b>'+(i+1)+'</b></td><td>'+fd(D[i],1)+'</td><td>'+d[0]+'</td><td>'+COMP(i+1)+'</td><td><span class="tag">'+TYPE[d[1]]+'</span></td></tr>'}).join("")+'</table></div>'}
+function attn(){var D=dates(),s=stats(),h='',t='';
+  for(var d=2;d<=34;d++){h+='<th title="'+esc(DAYS[d-1][0])+'">D'+d+'<br><span style="font-weight:400">'+fd(D[d-1])+'</span></th>';var c=0;S.people.forEach(function(_,i){if(S.att[i+":"+d]==="P")c++});t+='<td class="c"><b>'+c+'</b></td>'}
+  return '<p class="mut">Tap a cell to cycle P (present) → A (absent) → E (excused) → blank. Days 2–34 are the 33 training days.</p><div class="wrap"><table><tr><th class="sticky">Participant</th>'+h+'<th>Present</th><th>Rate</th></tr>'+
+  S.people.map(function(p,i){var r=s.per[i];var cells='';for(var d=2;d<=34;d++){var v=S.att[i+":"+d]||"";cells+='<td class="c"><button class="cell '+v+'" data-a="'+i+":"+d+'">'+v+'</button></td>'}
+    return '<tr><td class="sticky">'+esc(p.n)+'</td>'+cells+'<td class="c"><b>'+r.p+'</b></td><td class="c"><b>'+(r.r?Math.round(r.p/r.r*100)+"%":"—")+'</b></td></tr>'}).join("")+
+  '<tr><td class="sticky"><b>Present per day</b></td>'+t+'<td></td><td></td></tr></table></div>'}
+function asx(){var cols=[["bAI","Baseline pre-test (AI)"],["wAI","Final written exam (AI) · Day 14"],["pAI","Final practical exam (AI) · Day 29"],["bCS","Climate-smart pre-test · Day 30"],["fCS","Climate-smart final · Day 34"]];
+  return '<div class="row"><label><b>Pass mark (%)</b> — to be agreed in the LoA <input type="number" class="in" id="pass" min="0" max="100" value="'+esc(S.pass)+'" style="width:80px"></label></div><p class="mut">Scores are % out of 100. Assumed rule (the ToR leaves criteria to the LoA): Pass = final written (AI), final practical (AI) and climate-smart final all at or above the pass mark.</p><div class="wrap"><table><tr><th>Participant</th>'+cols.map(function(c){return '<th>'+c[1]+'</th>'}).join("")+'<th>Result</th><th>Certificate</th></tr>'+
+  S.people.map(function(p,i){var g=S.sc[i]||{};var fin=[g.wAI,g.pAI,g.fCS];var have=fin.every(function(x){return x!==undefined&&x!==""});
+    var res="—";if(have){if(S.pass==="")res="Pass mark TBC";else res=fin.every(function(x){return +x>=+S.pass})?'<span class="pass">Pass</span>':'<span class="fail">Fail</span>'}
+    return '<tr><td>'+esc(p.n)+'</td>'+cols.map(function(c){return '<td class="c"><input type="number" min="0" max="100" style="width:64px" data-s="'+i+'" data-k="'+c[0]+'" value="'+(g[c[0]]===undefined?"":g[c[0]])+'"></td>'}).join("")+'<td class="c">'+res+'</td><td class="c"><select data-s="'+i+'" data-k="cert"><option></option>'+["Issued","Pending","Not eligible"].map(function(o){return '<option'+(g.cert===o?" selected":"")+'>'+o+'</option>'}).join("")+'</select></td></tr>'}).join("")+'</table></div>'}
+document.addEventListener("click",function(e){var t=e.target;
+  if(t.dataset.t){tab=+t.dataset.t;render();return}
+  if(t.dataset.a){var k=t.dataset.a,o={"":"P",P:"A",A:"E",E:""};S.att[k]=o[S.att[k]||""];save();var sy=window.scrollY,w=document.querySelector(".wrap").scrollLeft;render();document.querySelector(".wrap").scrollLeft=w;window.scrollTo(0,sy);return}
+  if(t.id==="add"){S.people.push({n:"",m:""});save();render();return}
+  if(t.dataset.del!==undefined){var i=+t.dataset.del;if(confirm("Remove "+(S.people[i].n||"this row")+" and their records?")){S.people.splice(i,1);var na={},ns={};Object.keys(S.att).forEach(function(k){var p=k.split(":"),x=+p[0];if(x<i)na[k]=S.att[k];else if(x>i)na[(x-1)+":"+p[1]]=S.att[k]});S.att=na;Object.keys(S.sc).forEach(function(k){var x=+k;if(x<i)ns[x]=S.sc[x];else if(x>i)ns[x-1]=S.sc[x]});S.sc=ns;save();render()}}});
+document.addEventListener("change",function(e){var t=e.target;
+  if(t.dataset.f){S.people[+t.dataset.i][t.dataset.f]=t.value;save();return}
+  if(t.id==="start"){if(t.value){S.start=t.value;save();render()}return}
+  if(t.id==="pass"){S.pass=t.value;save();render();return}
+  if(t.dataset.s!==undefined){var i=t.dataset.s;S.sc[i]=S.sc[i]||{};S.sc[i][t.dataset.k]=t.value;save();render()}});
+render();
+</script>
+</body>
+</html>
